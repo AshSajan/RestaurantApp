@@ -1,0 +1,14 @@
+﻿<xapCache source="D:\Projects\RestaurantApplication\RestaurantApplication\Bin\Debug\RestaurantApplication_Debug_AnyCPU.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="22/10/2015 2:37:43 AM">
+  <file source="D:\Projects\RestaurantApplication\RestaurantApplication\obj\Debug\RestaurantApplication.dll" archivePath="RestaurantApplication.dll" lastWriteTime="22/10/2015 2:33:09 AM" />
+  <file source="D:\Projects\RestaurantApplication\RestaurantApplication\Assets\AlignmentGrid.png" archivePath="Assets\AlignmentGrid.png" lastWriteTime="18/10/2015 11:06:11 PM" />
+  <file source="D:\Projects\RestaurantApplication\RestaurantApplication\Assets\Tiles\FlipCycleTileLarge.png" archivePath="Assets\Tiles\FlipCycleTileLarge.png" lastWriteTime="18/10/2015 11:06:11 PM" />
+  <file source="D:\Projects\RestaurantApplication\RestaurantApplication\Assets\Tiles\FlipCycleTileSmall.png" archivePath="Assets\Tiles\FlipCycleTileSmall.png" lastWriteTime="18/10/2015 11:06:11 PM" />
+  <file source="D:\Projects\RestaurantApplication\RestaurantApplication\Assets\Tiles\IconicTileMediumLarge.png" archivePath="Assets\Tiles\IconicTileMediumLarge.png" lastWriteTime="18/10/2015 11:06:11 PM" />
+  <file source="D:\Projects\RestaurantApplication\RestaurantApplication\Assets\Tiles\IconicTileSmall.png" archivePath="Assets\Tiles\IconicTileSmall.png" lastWriteTime="18/10/2015 11:06:11 PM" />
+  <file source="D:\Projects\RestaurantApplication\RestaurantApplication\Bin\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="22/10/2015 12:14:02 AM" />
+  <file source="D:\Projects\RestaurantApplication\RestaurantApplication\Bin\Debug\Assets\Tiles\FlipCycleTileMedium.png" archivePath="Assets\Tiles\FlipCycleTileMedium.png" lastWriteTime="18/10/2015 11:06:11 PM" />
+  <file source="C:\Program Files (x86)\Microsoft SDKs\Expression\Blend\Windows Phone\v8.0\Libraries\Microsoft.Expression.Interactions.dll" archivePath="Microsoft.Expression.Interactions.dll" lastWriteTime="25/09/2012 1:41:02 AM" />
+  <file source="C:\Program Files (x86)\Microsoft SDKs\Expression\Blend\Windows Phone\v8.0\Libraries\System.Windows.Interactivity.dll" archivePath="System.Windows.Interactivity.dll" lastWriteTime="25/09/2012 1:41:02 AM" />
+  <file source="D:\Projects\RestaurantApplication\RestaurantApplication\Assets\ApplicationIcon.png" archivePath="Assets\ApplicationIcon.png" lastWriteTime="21/10/2015 11:55:24 PM" />
+  <file source="D:\Projects\RestaurantApplication\RestaurantApplication\Bin\Debug\Properties\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="22/10/2015 2:37:43 AM" />
+</xapCache>

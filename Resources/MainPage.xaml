@@ -1,0 +1,272 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="RestaurantApplication.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    shell:SystemTray.IsVisible="True" Loaded="PhoneApplicationPage_Loaded" BackKeyPress="PhoneApplicationPage_BackKeyPress">
+    <phone:PhoneApplicationPage.Resources>
+        <Style x:Key="PhoneButtonBase" TargetType="ButtonBase">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="{StaticResource PhoneForegroundBrush}"/>
+            <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}"/>
+            <Setter Property="BorderThickness" Value="{StaticResource PhoneBorderThickness}"/>
+            <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiBold}"/>
+            <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMedium}"/>
+            <Setter Property="Padding" Value="10,5,10,6"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ButtonBase">
+                        <Grid Background="Transparent">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver"/>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentContainer">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneButtonBasePressedForegroundBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="ButtonBackground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneAccentBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentContainer">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneDisabledBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="ButtonBackground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneDisabledBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="ButtonBackground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="Transparent"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Border x:Name="ButtonBackground" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="0" Margin="{StaticResource PhoneTouchTargetOverhang}">
+                                <ContentControl x:Name="ContentContainer" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="PhoneRadioButtonCheckBoxBase" BasedOn="{StaticResource PhoneButtonBase}" TargetType="ToggleButton">
+            <Setter Property="Background" Value="{StaticResource PhoneRadioCheckBoxBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource PhoneRadioCheckBoxBorderBrush}"/>
+            <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMedium}"/>
+            <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilyNormal}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="0"/>
+        </Style>
+        <Style x:Key="CheckBoxStyle2" BasedOn="{StaticResource PhoneRadioButtonCheckBoxBase}" TargetType="CheckBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <Grid Background="Transparent" HorizontalAlignment="Left" Margin="0,0,-14,-9" Width="74">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver"/>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="CheckBackground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneRadioCheckBoxPressedBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="CheckMark">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneButtonBasePressedForegroundBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="IndeterminateMark">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneButtonBasePressedForegroundBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="CheckBackground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneDisabledBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="CheckMark">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneDisabledBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="IndeterminateMark">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneDisabledBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentContainer">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneDisabledBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="CheckStates">
+                                    <VisualState x:Name="Checked">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="CheckMark">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Visible</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Unchecked"/>
+                                    <VisualState x:Name="Indeterminate">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="IndeterminateMark">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Visible</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Grid Margin="{StaticResource PhoneTouchTargetLargeOverhang}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="32"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0" VerticalAlignment="Top">
+                                    <Rectangle x:Name="IndeterminateMark" Fill="{StaticResource PhoneRadioCheckBoxCheckBrush}" HorizontalAlignment="Center" Height="16" IsHitTestVisible="False" Visibility="Collapsed" VerticalAlignment="Center" Width="16"/>
+                                    <Path x:Name="CheckMark" Data="M0,123 L39,93 L124,164 L256,18 L295,49 L124,240 z" Fill="{StaticResource PhoneRadioCheckBoxCheckBrush}" FlowDirection="LeftToRight" HorizontalAlignment="Center" Height="21" IsHitTestVisible="False" Stretch="Fill" StrokeThickness="3" StrokeLineJoin="Round" Visibility="Collapsed" VerticalAlignment="Center" Width="23"/>
+                                </Grid>
+                                <ContentControl x:Name="ContentContainer" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="23,0,6,10" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" Grid.ColumnSpan="2" RenderTransformOrigin="0.5,0.5" Visibility="Collapsed">
+                                    <ContentControl.RenderTransform>
+                                        <CompositeTransform ScaleX="-1"/>
+                                    </ContentControl.RenderTransform>
+                                </ContentControl>
+                            </Grid>
+                            <Border x:Name="CheckBackground" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{StaticResource PhoneBorderThickness}" Background="{TemplateBinding Background}" HorizontalAlignment="Left" Height="22" IsHitTestVisible="False" VerticalAlignment="Center" Width="22" Margin="22,20,0,33" RenderTransformOrigin="-0.227,0.409"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="CheckBoxStyle1" BasedOn="{StaticResource PhoneRadioButtonCheckBoxBase}" TargetType="CheckBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Height="66" VerticalAlignment="Top" Width="60" Style="{StaticResource CheckBoxStyle2}"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </phone:PhoneApplicationPage.Resources>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="#FFE26B33">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- LOCALIZATION NOTE:
+            To localize the displayed strings copy their values to appropriately named
+            keys in the app's neutral language resource file (AppResources.resx) then
+            replace the hard-coded text value between the attributes' quotation marks
+            with the binding clause whose path points to that string name.
+
+            For example:
+
+                Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}"
+
+            This binding points to the template's string resource named "ApplicationTitle".
+
+            Adding supported languages in the Project Properties tab will create a
+            new resx file per language that can carry the translated values of your
+            UI strings. The binding in these examples will cause the value of the
+            attributes to be drawn from the .resx file that matches the
+            CurrentUICulture of the app at run time.
+         -->
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,588" Grid.RowSpan="2">
+            <TextBlock Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0,245,0" FontWeight="Bold" FontStyle="Italic" FontFamily="Arial" Height="36" FontSize="24">
+            	<Run Text="Youth "/>
+            	<Run Text="Restaurant"/>
+            </TextBlock>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="10,30,14,-30">
+            <TextBlock Text="Menu" Margin="29,19,239,608" Style="{StaticResource PhoneTextTitle1Style}" Foreground="White" FontWeight="Bold" FontFamily="Arial" Height="141" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Image HorizontalAlignment="Left" Height="136" Margin="260,0,0,0" VerticalAlignment="Top" Width="186" CacheMode="BitmapCache" Source="Logo.png"/>
+            <TextBlock Style="{StaticResource PhoneTextNormalStyle}" Margin="110,160,189,572" FontWeight="Bold" FontStyle="Italic" FontFamily="Arial" FontSize="24" Text="Item Name"/>
+            <TextBlock Style="{StaticResource PhoneTextNormalStyle}" Margin="300,160,63,572" FontWeight="Bold" FontStyle="Italic" FontFamily="Arial" FontSize="24" RenderTransformOrigin="0.966,2.913" Text="Price"/>
+            <TextBlock Style="{StaticResource PhoneTextNormalStyle}" Margin="29,160,391,572" FontWeight="Bold" FontStyle="Italic" FontFamily="Arial" FontSize="24" Text="Sr."/>
+            <Grid HorizontalAlignment="Left" Height="461" Margin="29,160,0,0" VerticalAlignment="Top" Width="404" Opacity="0.4">
+                <Grid.Background>
+                    <ImageBrush ImageSource="Logo.png" Stretch="Uniform"/>
+                </Grid.Background>
+            </Grid>
+            <TextBlock Style="{StaticResource PhoneTextNormalStyle}" Margin="29,201,391,531" FontFamily="Arial" FontSize="24" Text="1." Foreground="White"/>
+            <TextBlock Style="{StaticResource PhoneTextNormalStyle}" Margin="29,242,391,490" FontFamily="Arial" FontSize="24" Text="2." Foreground="White"/>
+            <TextBlock Style="{StaticResource PhoneTextNormalStyle}" Margin="29,283,391,449" FontFamily="Arial" FontSize="24" Text="3." Foreground="White"/>
+            <TextBlock Style="{StaticResource PhoneTextNormalStyle}" Margin="29,319,391,413" FontFamily="Arial" FontSize="24" Text="4." Foreground="White"/>
+            <TextBlock Style="{StaticResource PhoneTextNormalStyle}" Margin="29,360,391,372" FontFamily="Arial" FontSize="24" Text="5." Foreground="White"/>
+            <TextBlock Style="{StaticResource PhoneTextNormalStyle}" Margin="29,401,391,331" FontFamily="Arial" FontSize="24" Text="6." Foreground="White"/>
+            <TextBlock Style="{StaticResource PhoneTextNormalStyle}" Margin="29,442,391,290" FontFamily="Arial" FontSize="24" Text="7." Foreground="White"/>
+            <TextBlock Style="{StaticResource PhoneTextNormalStyle}" Margin="29,483,391,249" FontFamily="Arial" FontSize="24" Text="8." Foreground="White"/>
+            <TextBlock Style="{StaticResource PhoneTextNormalStyle}" Margin="29,524,391,208" FontFamily="Arial" FontSize="24" Text="9." Foreground="White"/>
+            <TextBlock Style="{StaticResource PhoneTextNormalStyle}" Margin="29,565,391,167" FontFamily="Arial" FontSize="24" Text="10." Foreground="White" RenderTransformOrigin="0.368,2.813"/>
+            <TextBlock x:Name="lblItem1" Style="{StaticResource PhoneTextNormalStyle}" Margin="110,201,143,531" FontFamily="Arial" FontSize="24" Text="Chicken Wings" Foreground="White" Tap="lblItem1_Tap"/>
+            <TextBlock x:Name="lblPrice1" Style="{StaticResource PhoneTextNormalStyle}" Margin="337,201,67,531" FontFamily="Arial" FontSize="24" Text="20" Foreground="White" RenderTransformOrigin="-2.588,5.064"/>
+            <!--<CheckBox x:Name="chkItem1" Content="" HorizontalAlignment="Left" Margin="362,184,0,0" VerticalAlignment="Top" Height="73" Width="71" Style="{StaticResource CheckBoxStyle1}"/>-->
+            <TextBlock x:Name="lblItem2" Style="{StaticResource PhoneTextNormalStyle}" Margin="110,242,143,490" FontFamily="Arial" FontSize="24" Text="Smoky Chicken" Foreground="White" Tap="lblItem2_Tap"/>
+            <TextBlock x:Name="lblItem3" Style="{StaticResource PhoneTextNormalStyle}" Margin="110,283,143,449" FontFamily="Arial" FontSize="24" Text="Chicken Bella" Foreground="White" Tap="lblItem3_Tap"/>
+            <TextBlock x:Name="lblItem4" Style="{StaticResource PhoneTextNormalStyle}" Margin="110,319,143,413" FontFamily="Arial" FontSize="24" Text="Onion Rings" Foreground="White" Tap="lblItem4_Tap"/>
+            <TextBlock x:Name="lblItem5" Style="{StaticResource PhoneTextNormalStyle}" Margin="110,360,143,372" FontFamily="Arial" FontSize="24" Text="Rice Pilaf" Foreground="White" Tap="lblItem5_Tap"/>
+            <TextBlock x:Name="lblItem6" Style="{StaticResource PhoneTextNormalStyle}" Margin="110,401,143,331" FontFamily="Arial" FontSize="24" Text="French Fries" Foreground="White" Tap="lblItem6_Tap"/>
+            <TextBlock x:Name="lblItem7" Style="{StaticResource PhoneTextNormalStyle}" Margin="110,437,143,295" FontFamily="Arial" FontSize="24" Text="Mashed Potatoes" Foreground="White" Tap="lblItem7_Tap"/>
+            <TextBlock x:Name="lblItem8" Style="{StaticResource PhoneTextNormalStyle}" Margin="110,478,143,254" FontFamily="Arial" FontSize="24" Text="Sweet Potato Fries" Foreground="White" Tap="lblItem8_Tap"/>
+            <TextBlock x:Name="lblItem9" Style="{StaticResource PhoneTextNormalStyle}" Margin="110,519,143,213" FontFamily="Arial" FontSize="24" Text="Baked Ravioli" Foreground="White" Tap="lblItem9_Tap"/>
+            <TextBlock x:Name="lblItem10" Style="{StaticResource PhoneTextNormalStyle}" Margin="110,560,143,172" FontFamily="Arial" FontSize="24" Text="Fire Wings" Foreground="White" RenderTransformOrigin="0.468,2.361" Tap="lblItem10_Tap"/>
+            <TextBlock x:Name="lblPrice2" Style="{StaticResource PhoneTextNormalStyle}" Margin="337,242,67,490" FontFamily="Arial" FontSize="24" Text="50" Foreground="White" RenderTransformOrigin="-2.588,5.064"/>
+            <TextBlock x:Name="lblPrice3" Style="{StaticResource PhoneTextNormalStyle}" Margin="337,283,67,449" FontFamily="Arial" FontSize="24" Text="15" Foreground="White" RenderTransformOrigin="-2.588,5.064"/>
+            <TextBlock x:Name="lblPrice4" Style="{StaticResource PhoneTextNormalStyle}" Margin="337,319,67,413" FontFamily="Arial" FontSize="24" Text="05" Foreground="White" RenderTransformOrigin="-2.588,5.064"/>
+            <TextBlock x:Name="lblPrice5" Style="{StaticResource PhoneTextNormalStyle}" Margin="337,360,67,372" FontFamily="Arial" FontSize="24" Text="10" Foreground="White" RenderTransformOrigin="-2.588,5.064"/>
+            <TextBlock x:Name="lblPrice6" Style="{StaticResource PhoneTextNormalStyle}" Margin="337,401,67,331" FontFamily="Arial" FontSize="24" Text="20" Foreground="White" RenderTransformOrigin="-2.588,5.064"/>
+            <TextBlock x:Name="lblPrice7" Style="{StaticResource PhoneTextNormalStyle}" Margin="337,442,67,290" FontFamily="Arial" FontSize="24" Text="25" Foreground="White" RenderTransformOrigin="-2.588,5.064"/>
+            <TextBlock x:Name="lblPrice8" Style="{StaticResource PhoneTextNormalStyle}" Margin="337,483,67,249" FontFamily="Arial" FontSize="24" Text="20" Foreground="White" RenderTransformOrigin="-2.588,5.064"/>
+            <TextBlock x:Name="lblPrice9" Style="{StaticResource PhoneTextNormalStyle}" Margin="337,524,67,208" FontFamily="Arial" FontSize="24" Text="80" Foreground="White" RenderTransformOrigin="-2.588,5.064"/>
+            <TextBlock x:Name="lblPrice10" Style="{StaticResource PhoneTextNormalStyle}" Margin="337,565,67,167" FontFamily="Arial" FontSize="24" Text="20" Foreground="White" RenderTransformOrigin="-2.588,5.064"/>
+            <Button x:Name="btnTotalBill" Content="   View &#xD;&#xA;Total Bill" HorizontalAlignment="Left" Margin="155,606,0,0" VerticalAlignment="Top" Height="129" Width="145" Click="btnTotalBill_Click"/>
+            <Button x:Name="btnBillPerPerson" Content="Bill Per &#xD;&#xA;Person" HorizontalAlignment="Left" Margin="288,606,0,0" VerticalAlignment="Top" Height="129" Width="145" Click="btnBillPerPerson_Click"/>
+            <Button x:Name="btnTip" Content="    Tip &#xD;&#xA;Amount" HorizontalAlignment="Left" Margin="10,606,0,0" VerticalAlignment="Top" Height="129" Width="145" Click="btnTip_Click"/>
+            <!--<CheckBox x:Name="chkItem7" Content="" HorizontalAlignment="Left" Margin="362,423,0,0" VerticalAlignment="Top" Height="73" Width="71" Style="{StaticResource CheckBoxStyle1}"/>
+            <CheckBox x:Name="chkItem6" Content="" HorizontalAlignment="Left" Margin="362,381,0,0" VerticalAlignment="Top" Height="73" Width="71" Style="{StaticResource CheckBoxStyle1}"/>
+            <CheckBox x:Name="chkItem5" Content="" HorizontalAlignment="Left" Margin="362,340,0,0" VerticalAlignment="Top" Height="73" Width="71" Style="{StaticResource CheckBoxStyle1}"/>
+            <CheckBox x:Name="chkItem4" Content="" HorizontalAlignment="Left" Margin="362,299,0,0" VerticalAlignment="Top" Height="73" Width="71" Style="{StaticResource CheckBoxStyle1}"/>
+            <CheckBox x:Name="chkItem3" Content="" HorizontalAlignment="Left" Margin="362,262,0,0" VerticalAlignment="Top" Height="73" Width="71" Style="{StaticResource CheckBoxStyle1}"/>
+            <CheckBox x:Name="chkItem2" Content="" HorizontalAlignment="Left" Margin="362,221,0,0" VerticalAlignment="Top" Height="73" Width="71" Style="{StaticResource CheckBoxStyle1}" RenderTransformOrigin="0.493,0.877"/>
+            <CheckBox x:Name="chkItem8" Content="" HorizontalAlignment="Left" Margin="362,466,0,0" VerticalAlignment="Top" Height="73" Width="71" Style="{StaticResource CheckBoxStyle1}"/>
+            <CheckBox x:Name="chkItem9" Content="" HorizontalAlignment="Left" Margin="362,505,0,0" VerticalAlignment="Top" Height="73" Width="71" Style="{StaticResource CheckBoxStyle1}"/>
+            <CheckBox x:Name="chkItem10" Content="" HorizontalAlignment="Left" Margin="362,548,0,0" VerticalAlignment="Top" Height="73" Width="71" Style="{StaticResource CheckBoxStyle1}"/>
+!-->
+        </Grid>
+
+        <!--Uncomment to see an alignment grid to help ensure your controls are
+            aligned on common boundaries.  The image has a top margin of -32px to
+            account for the System Tray. Set this to 0 (or remove the margin altogether)
+            if the System Tray is hidden.
+
+            Before shipping remove this XAML and the image itself.-->
+        <!--<Image Source="/Assets/AlignmentGrid.png" VerticalAlignment="Top" Height="800" Width="480" Margin="0,-32,0,0" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="False" />-->
+    </Grid>
+
+</phone:PhoneApplicationPage>
